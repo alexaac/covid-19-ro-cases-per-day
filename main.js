@@ -87,19 +87,19 @@ const y = d3.scaleLinear().range([height, 0]);
         svg.selectAll("dot")
             .data(data)
             .enter().append("circle")
-                .attr("r", 5)
+                .attr("r", 3)
                 .attr("cx", function(d) { return x(d.date); })
                 .attr("cy", function(d) { return y(d.total_case); });
         svg.selectAll("dot")
             .data(data)
             .enter().append("circle")
-                .attr("r", 5)
+                .attr("r", 3)
                 .attr("cx", function(d) { return d.total_healed !== 0 ? x(d.date) : null; })
                 .attr("cy", function(d) { return y(d.total_healed); });
         svg.selectAll("dot")
             .data(data)
             .enter().append("circle")
-                .attr("r", 5)
+                .attr("r", 3)
                 .attr("cx", function(d) { return d.total_dead !== 0 ? x(d.date) : null; })
                 .attr("cy", function(d) { return y(d.total_dead); });
 
@@ -121,7 +121,7 @@ const y = d3.scaleLinear().range([height, 0]);
             .text("Perioadă de timp");
         const yLabel = svg.append("text")
             .attr("transform", "rotate(-90)")
-            .attr("y", -30)
+            .attr("y", -50)
             .attr("x", -170)
             .attr("font-size", "18px")
             .attr("text-anchor", "middle")
