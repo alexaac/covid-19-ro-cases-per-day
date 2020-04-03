@@ -116,14 +116,14 @@ const y = d3.scaleLinear().range([height, 0]);
         const xLabel = svg.append("text")
             .attr("y", height + 50)
             .attr("x", width / 2)
-            .attr("font-size", "18px")
+            .attr("font-size", "16px")
             .attr("text-anchor", "middle")
             .text("Perioadă de timp");
         const yLabel = svg.append("text")
             .attr("transform", "rotate(-90)")
             .attr("y", -50)
             .attr("x", -170)
-            .attr("font-size", "18px")
+            .attr("font-size", "16px")
             .attr("text-anchor", "middle")
             .text("Număr de persoane");
 
