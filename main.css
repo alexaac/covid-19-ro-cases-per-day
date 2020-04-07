@@ -52,6 +52,16 @@ path {
     stroke: var(--main-decese);
 }
 
+.dot_total {
+    fill: var(--main-confirmate);
+}
+.dot_healed {
+    fill: var(--main-recuperari);
+}
+.dot_dead {
+    fill: var(--main-decese);
+}
+
 .overlay {
     fill: none;
     pointer-events: all;

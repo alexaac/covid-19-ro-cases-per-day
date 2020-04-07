@@ -88,18 +88,21 @@ const y = d3.scaleLinear().range([height, 0]);
             .data(data)
             .enter().append("circle")
                 .attr("r", 3)
+                .attr("class", "dot_total")
                 .attr("cx", function(d) { return x(d.date); })
                 .attr("cy", function(d) { return y(d.total_case); });
         svg.selectAll("dot")
             .data(data)
             .enter().append("circle")
                 .attr("r", 3)
+                .attr("class", "dot_healed")
                 .attr("cx", function(d) { return d.total_healed !== 0 ? x(d.date) : null; })
                 .attr("cy", function(d) { return y(d.total_healed); });
         svg.selectAll("dot")
             .data(data)
             .enter().append("circle")
                 .attr("r", 3)
+                .attr("class", "dot_dead")
                 .attr("cx", function(d) { return d.total_dead !== 0 ? x(d.date) : null; })
                 .attr("cy", function(d) { return y(d.total_dead); });
 
