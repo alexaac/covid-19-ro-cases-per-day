@@ -54,12 +54,15 @@ path {
 
 .dot_total {
     fill: var(--main-confirmate);
+    stroke: #333;
 }
 .dot_healed {
     fill: var(--main-recuperari);
+    stroke: #333;
 }
 .dot_dead {
     fill: var(--main-decese);
+    stroke: #333;
 }
 
 .overlay {
