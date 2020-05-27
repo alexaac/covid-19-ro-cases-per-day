@@ -1,6 +1,7 @@
-import LineChart from './LineChart.js';
+import LineGraph from './LineGraph.js';
+import TimeBrush from './TimeBrush.js';
 
-let lineChart, cases_data;
+let lineGraph, timeBrush, cases_data;
 
 (() => {
     // https://bl.ocks.org/d3noob/a44d21b304b9f7260a284b1883232002/1b3a420bb9f51c00003974fda2497625380c7cb9
@@ -8,7 +9,7 @@ let lineChart, cases_data;
     
     // Get the data
     const promises = [
-        d3.json("https://covid19.geo-spatial.org/api/dashboard/getDailyCaseReport")
+        d3.json('https://covid19.geo-spatial.org/api/dashboard/getDailyCaseReport')
     ];
 
     Promise.all(promises).then( data => {
@@ -16,10 +17,10 @@ let lineChart, cases_data;
         cases_data = data[0].data.data;
 
         // parse the date / time
-        const parseTime = d3.timeParse("%Y-%m-%d");
+        const parseTime = d3.timeParse('%Y-%m-%d');
 
         // format the data
-        cases_data.forEach(function(d) {
+        cases_data.forEach(d => {
             d.date = parseTime(d.day_case);
             d.date.toLocaleDateString('ro-RO');
             d.total_case = +d.total_case;
@@ -31,10 +32,24 @@ let lineChart, cases_data;
     );
 
     const changeView = () => {
-        // Set object for nodes by time
-        lineChart = new LineChart("#chart", cases_data);
+        let width = 960,
+            height = 720;
 
-        lineChart.setupData();
+        // append the svg object to the chart div
+        let svg = d3.select('#chart')
+            .append('svg')
+            .attr('class', 'chart-group')
+            .attr('preserveAspectRatio', 'xMidYMid mean')
+            .attr('width', width)
+            .attr('height', height)
+            .attr('viewBox', '0 0 ' + width + ' ' + height);
+
+        // Set object for nodes by time
+        lineGraph = new LineGraph('.chart-group', cases_data);
+        lineGraph.setupData();
+
+        timeBrush = new TimeBrush('.chart-group', cases_data, lineGraph);
+        timeBrush.setupData();
     };
 
 }).call(this);
