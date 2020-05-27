@@ -1,3 +1,4 @@
+import * as Helper from './js/Helper.js';
 
 // TimeBrush Class
 export default class TimeBrush {
@@ -86,7 +87,7 @@ export default class TimeBrush {
 
         // Update axes
         viz.xAxisCall.scale(viz.xScale);
-        viz.xAxis.transition(viz.t()).call(viz.xAxisCall.tickFormat(viz.lineGraph.multiFormat));
+        viz.xAxis.transition(viz.t()).call(viz.xAxisCall.tickFormat(Helper.multiFormat));
 
         viz.xAxis.selectAll('text').attr('font-weight', 'bold');
 
