@@ -43,7 +43,7 @@ let lineGraph, timeBrush, cases_data;
         let svg = d3.select('#chart')
             .append('svg')
             .attr('class', 'chart-group')
-            .attr('preserveAspectRatio', 'xMidYMid mean')
+            .attr('preserveAspectRatio', 'xMidYMid meet')
             .attr('width', width)
             .attr('height', height)
             .attr('viewBox', '0 0 ' + width + ' ' + height);
