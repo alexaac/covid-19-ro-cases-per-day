@@ -12,7 +12,7 @@ export default class TimeBrush {
     initViz () {
         var viz = this;
 
-        viz.margin = {top: 10, right: 100, bottom: 10, left: 100},
+        viz.margin = {top: 10, right: 60, bottom: 10, left: 140},
         viz.width = (d3.select(viz.parentElement).node()
             .getBoundingClientRect().width - viz.margin.left - viz.margin.right),
         viz.height = 150 - viz.margin.top - viz.margin.bottom;

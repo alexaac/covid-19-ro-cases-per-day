@@ -56,7 +56,7 @@ export default class LineGraph {
     initViz () {
         var viz = this;
 
-        viz.margin = {top: 50, right: 100, bottom: 10, left: 100},
+        viz.margin = {top: 50, right: 60, bottom: 10, left: 140},
         viz.width = (d3.select(viz.parentElement).node()
             .getBoundingClientRect().width - viz.margin.left - viz.margin.right),
         viz.height = 500 - viz.margin.top - viz.margin.bottom;
@@ -89,7 +89,7 @@ export default class LineGraph {
         // Labels
         viz.yLabel = viz.g.append('text')
             .attr('transform', 'rotate(-90)')
-            .attr('y', -50)
+            .attr('y', -60)
             .attr('x', -170)
             .attr('font-size', '16px')
             .attr('text-anchor', 'middle')
