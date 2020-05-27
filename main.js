@@ -1,5 +1,6 @@
 import LineGraph from './LineGraph.js';
 import TimeBrush from './TimeBrush.js';
+import * as Legend from './js/Legend.js';
 
 let lineGraph, timeBrush, cases_data;
 
@@ -53,6 +54,8 @@ let lineGraph, timeBrush, cases_data;
 
         timeBrush = new TimeBrush('.chart-group', cases_data, lineGraph);
         timeBrush.setupData();
+
+        Legend.drawLegend('.chart-group');
     };
 
 }).call(this);

@@ -1,49 +1,4 @@
-const locale = d3.timeFormatLocale({
-    'dateTime': '%A, %e %B %Y г. %X',
-    'date': '%d.%m.%Y',
-    'time': '%H:%M:%S',
-    'periods': ['AM', 'PM'],
-    'days': ['Luni', 'Marți', 'Miercuri', 'Joi', 'Vineri', 'Sâmbătă', 'Duminică'],
-    'shortDays': ['Lu', 'Ma', 'Mi', 'Jo', 'Vi', 'Sa', 'Du'],
-    'months': ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'],
-    'shortMonths': ['Ian', 'Feb', 'Mart', 'Apr', 'Mai', 'Iun', 'Iul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
-});
-
-const formatMillisecond = locale.format('.%L'),
-    formatSecond = locale.format(':%S'),
-    formatMinute = locale.format('%I:%M'),
-    formatHour = locale.format('%I %p'),
-    formatDay = locale.format('%a %d'),
-    formatWeek = locale.format('%b %d'),
-    formatMonth = locale.format('%B'),
-    formatYear = locale.format('%Y');
-
-// Tooltip Code
-const tooltip_div = d3.select('body')
-    .append('tooltip_div')
-    .attr('class', 'tooltip')
-    .style('opacity', 0);
-
-const highlight = (d) => {
-    tooltip_div.transition()
-        .duration(200)
-        .style('opacity', .9);
-    tooltip_div.html(tooltipHTML(d))
-        .style('left', (d3.event.pageX/1.5) + 'px')
-        .style('top', (d3.event.pageY/1.5) + 'px');
-    };
-
-const tooltipHTML = (d) => {
-    const ro_date = d3.timeFormat('%Y-%m-%d')(d.date);
-    return '<b>Ziua ' + d.day_no + ' (' + ro_date + ')</b><br />' +
-            'Cazuri active total: ' + d.total_active + '<br />' +
-            'Cazuri confirmate noi: ' + d.new_case_no + '<br />' +
-            'Cazuri confirmate total: ' + d.total_case + '<br />' +
-            'Recuperări noi: ' + d.new_healed_no + '<br />' +
-            'Recuperări total: ' + d.total_healed + '<br />' +
-            'Decese noi: ' + d.new_dead_no + '<br />' +
-            'Decese total: ' + d.total_dead + '<br />';
-};
+import * as Helper from './js/Helper.js';
 
 // LineGraph Class
 export default class LineGraph {
@@ -68,10 +23,6 @@ export default class LineGraph {
             .attr('transform',
                 'translate(' + viz.margin.left + ',' + viz.margin.top + ')');
 
-        viz.t = () => d3.transition().duration(1000);
-
-        viz.bisectDate = d3.bisector(d => d.date).left;
-        
         // Set the ranges
         viz.linePathTotal = viz.g.append('path')
             .attr('class', 'line_total');
@@ -122,44 +73,6 @@ export default class LineGraph {
             .style('text-decoration', 'underline')
             .text('Evoluția cazurilor pe zile');
 
-        // Legend
-        const statuses = [
-            { status: 'total', color: 'var(--main-confirmate)', label: 'Cazuri confirmate'},
-            { status: 'active', color: 'var(--main-active)', label: 'Active' },
-            { status: 'healed', color: 'var(--main-recuperari)', label: 'Recuperări' },
-            { status: 'dead', color: 'var(--main-decese)', label: 'Decese' }
-        ];
-
-        viz.legend = viz.g.append('g')
-            .attr('transform', 'translate(130,0)');
-
-        statuses.forEach((elem, i) => {
-            const legendRow = viz.legend.append('g')
-                .attr('transform', 'translate(0, ' + (i * 20) + ')');
-
-            legendRow.append('rect')
-                .attr('width', 10)
-                .attr('height', 10)
-                .attr('fill', elem.color);
-
-            legendRow.append('text')
-                .attr('x', -10)
-                .attr('y', 10)
-                .attr('text-anchor', 'end')
-                .style('text-transform', 'capitalize')
-                .text(elem.label);
-        });
-
-        viz.multiFormat = (date) => {
-            return (d3.timeSecond(date) < date ? formatMillisecond
-                : d3.timeMinute(date) < date ? formatSecond
-                : d3.timeHour(date) < date ? formatMinute
-                : d3.timeDay(date) < date ? formatHour
-                : d3.timeMonth(date) < date ? (d3.timeWeek(date) < date ? formatDay : formatWeek)
-                : d3.timeYear(date) < date ? formatMonth
-                : formatYear)(date);
-        };
-        
         viz.setupData();
     };
 
@@ -185,55 +98,12 @@ export default class LineGraph {
 
             // Update axes
             viz.xAxisCall.scale(viz.xScale);
-            viz.xAxis.transition(viz.t()).call(viz.xAxisCall.tickFormat(viz.multiFormat));
+            viz.xAxis.transition(Helper.transition).call(viz.xAxisCall.tickFormat(Helper.multiFormat));
             viz.yAxisCall.scale(viz.yScale);
-            viz.yAxis.transition(viz.t()).call(viz.yAxisCall);
+            viz.yAxis.transition(Helper.transition).call(viz.yAxisCall);
 
             viz.xAxis.selectAll('text').attr('font-weight', 'bold');
             viz.yAxis.selectAll('text').attr('font-weight', 'bold');
-
-            // Tooltip Code
-            const focus = viz.g.append('g')
-                .attr('class', 'focus')
-                .style('display', 'none');
-
-            focus.append('line')
-                .attr('class', 'x-hover-line hover-line')
-                .attr('y1', 0)
-                .attr('y2', viz.height);
-
-            focus.append('line')
-                .attr('class', 'y-hover-line hover-line')
-                .attr('x1', 0)
-                .attr('x2', viz.width);
-
-            focus.append('circle')
-                .attr('r', 5.5);
-
-            focus.append('text')
-                .attr('x', 0)
-                .attr('dy', '-1em');
-
-            viz.g.append('rect')
-                .attr('class', 'overlay')
-                .attr('width', viz.width)
-                .attr('height', viz.height)
-                .on('mouseover', () => { focus.style('display', null); tooltip_div.style('display', null); })
-                .on('mouseout', () => { focus.style('display', 'none'); tooltip_div.style('display', 'none'); })
-                .on('mousemove', mousemove);
-
-            function mousemove() {
-                const x0 = viz.xScale.invert(d3.mouse(this)[0]),
-                    i = viz.bisectDate(viz.dataFiltered, x0, 1),
-                    d0 = viz.dataFiltered[i - 1],
-                    d1 = viz.dataFiltered[i],
-                    d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-                focus.attr('transform', 'translate(' + viz.xScale(d.date) + ',' + viz.yScale(d.total_case) + ')');
-                // focus.select('text').html('Ziua ' + d.day_no);
-                focus.select('.x-hover-line').attr('y2', viz.height - viz.yScale(d.total_case));
-                focus.select('.y-hover-line').attr('x2', - viz.xScale(d.date));
-                highlight(d);
-            }
 
             // Define the lines
             viz.valueline_total = d3.line()
@@ -252,13 +122,13 @@ export default class LineGraph {
                 .x(d => d.total_active !== 0 ? viz.xScale(d.date) : null)
                 .y(d => viz.yScale(d.total_active));
 
-            viz.linePathTotal.transition(viz.t)
+            viz.linePathTotal.transition(Helper.transition)
                 .attr('d', viz.valueline_total(viz.dataFiltered));
-            viz.linePathHealed.transition(viz.t)
+            viz.linePathHealed.transition(Helper.transition)
                 .attr('d', viz.valueline_healed(viz.dataFiltered));
-            viz.linePathDead.transition(viz.t)
+            viz.linePathDead.transition(Helper.transition)
                 .attr('d', viz.valueline_dead(viz.dataFiltered));
-            viz.linePathActive.transition(viz.t)
+            viz.linePathActive.transition(Helper.transition)
                 .attr('d', viz.valueline_active(viz.dataFiltered));
 
             // Scatterplot
@@ -272,7 +142,7 @@ export default class LineGraph {
                 .append('circle')
                     .attr('class', 'dot_total')
                 .merge(viz.circles1_update)
-                    .transition(viz.t)
+                    .transition(Helper.transition)
                         .attr('r', 3)
                         .attr('cx', d => viz.xScale(d.date))
                         .attr('cy', d => viz.yScale(d.total_case));
@@ -287,7 +157,7 @@ export default class LineGraph {
                 .append('circle')
                     .attr('class', 'dot_healed')
                 .merge(viz.circles2_update)
-                    .transition(viz.t)
+                    .transition(Helper.transition)
                         .attr('r', 3)
                         .attr('cx', d => d.total_healed !== 0 ? viz.xScale(d.date) : null)
                         .attr('cy', d => viz.yScale(d.total_healed));
@@ -302,7 +172,7 @@ export default class LineGraph {
                 .append('circle')
                     .attr('class', 'dot_dead')
                 .merge(viz.circles3_update)
-                    .transition(viz.t)
+                    .transition(Helper.transition)
                         .attr('r', 3)
                         .attr('cx', d => d.total_dead !== 0 ? viz.xScale(d.date) : null)
                         .attr('cy', d => viz.yScale(d.total_dead));
@@ -317,10 +187,13 @@ export default class LineGraph {
                 .append('circle')
                     .attr('class', 'dot_active')
                 .merge(viz.circles4_update)
-                    .transition(viz.t)
+                    .transition(Helper.transition)
                         .attr('r', 3)
                         .attr('cx', d => d.total_active !== 0 ? viz.xScale(d.date) : null)
                         .attr('cy', d => viz.yScale(d.total_active));
+
+            // Set focus and tooltip on nodes on mousemove
+            Helper.setFocus(viz.g, viz.xScale, viz.yScale, viz.width, viz.height, viz.dataFiltered);
         };
     };
 }
