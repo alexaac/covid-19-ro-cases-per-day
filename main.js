@@ -24,6 +24,9 @@ let lineGraph, timeBrush, cases_data;
             d.date = parseTime(d.day_case);
             d.date.toLocaleDateString('ro-RO');
             d.total_case = +d.total_case;
+            d.total_healed = +d.total_healed;
+            d.total_dead = +d.total_dead;
+            d.total_active = d.total_case - (d.total_healed + d.total_dead);
         });
 
         changeView();

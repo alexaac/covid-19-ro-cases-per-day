@@ -13,9 +13,10 @@ body {
 }
 
 :root {
-    --main-confirmate:steelblue ;
+    --main-confirmate:#ffcd56 ;
     --main-recuperari: limegreen;
     --main-decese: #b2beb5;
+    --main-active: steelblue;
 }
 
 .wrapper {
@@ -56,6 +57,9 @@ path {
 .line_dead {
     stroke: var(--main-decese);
 }
+.line_active {
+    stroke: var(--main-active);
+}
 
 .dot_total {
     fill: var(--main-confirmate);
@@ -67,6 +71,10 @@ path {
 }
 .dot_dead {
     fill: var(--main-decese);
+    stroke: #333;
+}
+.dot_active {
+    fill: var(--main-active);
     stroke: #333;
 }
 

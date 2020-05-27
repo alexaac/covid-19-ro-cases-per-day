@@ -36,6 +36,7 @@ const highlight = (d) => {
 const tooltipHTML = (d) => {
     const ro_date = d3.timeFormat('%Y-%m-%d')(d.date);
     return '<b>Ziua ' + d.day_no + ' (' + ro_date + ')</b><br />' +
+            'Cazuri active total: ' + d.total_active + '<br />' +
             'Cazuri confirmate noi: ' + d.new_case_no + '<br />' +
             'Cazuri confirmate total: ' + d.total_case + '<br />' +
             'Recuperări noi: ' + d.new_healed_no + '<br />' +
@@ -78,6 +79,8 @@ export default class LineGraph {
             .attr('class', 'line_healed');
         viz.linePathDead = viz.g.append('path')
             .attr('class', 'line_dead');
+        viz.linePathActive = viz.g.append('path')
+            .attr('class', 'line_active');
 
         viz.nodesTotal = viz.g.append('g')
             .attr('class', 'node-total');
@@ -85,6 +88,8 @@ export default class LineGraph {
             .attr('class', 'node-healed');
         viz.nodesDead = viz.g.append('g')
             .attr('class', 'node-dead');
+        viz.nodesActive = viz.g.append('g')
+            .attr('class', 'node-active');
 
         // Labels
         viz.yLabel = viz.g.append('text')
@@ -120,6 +125,7 @@ export default class LineGraph {
         // Legend
         const statuses = [
             { status: 'total', color: 'var(--main-confirmate)', label: 'Cazuri confirmate'},
+            { status: 'active', color: 'var(--main-active)', label: 'Active' },
             { status: 'healed', color: 'var(--main-recuperari)', label: 'Recuperări' },
             { status: 'dead', color: 'var(--main-decese)', label: 'Decese' }
         ];
@@ -242,12 +248,18 @@ export default class LineGraph {
                 .x(d => d.total_dead !== 0 ? viz.xScale(d.date) : null)
                 .y(d => viz.yScale(d.total_dead));
 
+            viz.valueline_active = d3.line()
+                .x(d => d.total_active !== 0 ? viz.xScale(d.date) : null)
+                .y(d => viz.yScale(d.total_active));
+
             viz.linePathTotal.transition(viz.t)
                 .attr('d', viz.valueline_total(viz.dataFiltered));
             viz.linePathHealed.transition(viz.t)
                 .attr('d', viz.valueline_healed(viz.dataFiltered));
             viz.linePathDead.transition(viz.t)
                 .attr('d', viz.valueline_dead(viz.dataFiltered));
+            viz.linePathActive.transition(viz.t)
+                .attr('d', viz.valueline_active(viz.dataFiltered));
 
             // Scatterplot
             viz.circles1_update = d3.select('.node-total')
@@ -293,7 +305,22 @@ export default class LineGraph {
                     .transition(viz.t)
                         .attr('r', 3)
                         .attr('cx', d => d.total_dead !== 0 ? viz.xScale(d.date) : null)
-                        .attr('cy', d => viz.yScale(d.total_dead));          
+                        .attr('cy', d => viz.yScale(d.total_dead));
+
+            viz.circles4_update = d3.select('.node-active')
+                .selectAll('circle')
+                .data(viz.dataFiltered);
+            viz.circles4_update.exit()
+                .attr('class', 'exit')
+                .remove();
+            viz.circles4_enter = viz.circles4_update.enter()
+                .append('circle')
+                    .attr('class', 'dot_active')
+                .merge(viz.circles4_update)
+                    .transition(viz.t)
+                        .attr('r', 3)
+                        .attr('cx', d => d.total_active !== 0 ? viz.xScale(d.date) : null)
+                        .attr('cy', d => viz.yScale(d.total_active));
         };
     };
 }
