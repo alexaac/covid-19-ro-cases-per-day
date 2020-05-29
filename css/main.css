@@ -111,6 +111,76 @@ tooltip_div.tooltip {
     pointer-events: none;
 }
 
+.side-pannel {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 100;
+    font-size: 12px;
+    pointer-events: none;
+}
+
+.control {
+    margin-right: 10px;
+    margin-top: 10px;
+    cursor: auto;
+    float: left;
+    clear: both;
+    position: relative;
+    z-index: 800;
+    pointer-events: visiblePainted;
+    pointer-events: auto;
+}
+
+.control a {
+    text-decoration: none;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	display: block;
+	height: 36px;
+	width: 50px;
+    line-height: 50px;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.control a:hover {
+	background-color: #f4f4f4;
+}
+
+.control-group a {
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+.control-group a:first-child {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+.control-group a:last-child {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+
+/* http://alessioatzeni.com/metrize-icons/ */
+
+.play-icon {
+    background-image: url(../icons/play.svg);
+}
+
+.pause-icon {
+    background-image: url(../icons/pause.svg);
+}
+
+.hide {
+    position: absolute;
+    left: -9999px;
+}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 550px) {
     .wrapper {

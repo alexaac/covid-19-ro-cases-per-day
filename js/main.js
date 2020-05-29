@@ -1,6 +1,7 @@
+import * as Helper from './Helper.js';
+import * as Legend from './Legend.js';
 import LineGraph from './LineGraph.js';
 import TimeBrush from './TimeBrush.js';
-import * as Legend from './Legend.js';
 
 let lineGraph, timeBrush, cases_data;
 
@@ -56,6 +57,24 @@ let lineGraph, timeBrush, cases_data;
         timeBrush.setupData();
 
         Legend.drawLegend('.chart-group');
+
+        // Start/stop the brush animation
+        var flag = false;
+
+        d3.select('#play-cases')
+            .on('click', () => {
+                d3.select('#play-cases').classed('hide', true);
+                d3.select('#pause-cases').classed('hide', false);
+                flag = true;
+                Helper.animateBrush(timeBrush, flag);
+            });
+        d3.select('#pause-cases')
+            .on('click', () => {
+                d3.select('#pause-cases').classed('hide', true);
+                d3.select('#play-cases').classed('hide',false);
+                flag = false;
+            });
+
     };
 
 }).call(this);
