@@ -23,7 +23,7 @@ export default class TimeBrush {
         viz.g = d3.select(viz.parentElement)
             .append('g')
             .attr('transform',
-                'translate(' + viz.margin.left + ',' + (viz.lineGraph.height + viz.margin.top + 100) + ')');
+                'translate(' + viz.margin.left + ',' + (viz.lineGraph.height + viz.margin.top + 200) + ')');
         
         viz.t = () => { return d3.transition().duration(1000); }
 
