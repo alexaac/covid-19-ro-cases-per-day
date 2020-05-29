@@ -15,7 +15,7 @@ export default class TimeBrush {
     initViz () {
         var viz = this;
 
-        viz.margin = {top: 10, right: 60, bottom: 10, left: 140},
+        viz.margin = {top: 10, right: 60, bottom: 10, left: 120},
         viz.width = viz.svg_width - viz.margin.left - viz.margin.right,
         viz.height = viz.svg_height * 1/4 - viz.margin.top - viz.margin.bottom;
 
