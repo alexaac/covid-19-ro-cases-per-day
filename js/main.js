@@ -1,6 +1,6 @@
 import LineGraph from './LineGraph.js';
 import TimeBrush from './TimeBrush.js';
-import * as Legend from './js/Legend.js';
+import * as Legend from './Legend.js';
 
 let lineGraph, timeBrush, cases_data;
 

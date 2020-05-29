@@ -1,4 +1,4 @@
-import * as Helper from './js/Helper.js';
+import * as Helper from './Helper.js';
 
 // TimeBrush Class
 export default class TimeBrush {
