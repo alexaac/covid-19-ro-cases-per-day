@@ -2,10 +2,12 @@ import * as Helper from './js/Helper.js';
 
 // TimeBrush Class
 export default class TimeBrush {
-    constructor (_parentElement, data, lineGraph) {
+    constructor (_parentElement, data, lineGraph, width, height) {
         this.parentElement = _parentElement;
         this.data = data;
         this.lineGraph = lineGraph;
+        this.svg_width = width;
+        this.svg_height = height;
 
         this.initViz();
     };
@@ -14,9 +16,8 @@ export default class TimeBrush {
         var viz = this;
 
         viz.margin = {top: 10, right: 60, bottom: 10, left: 140},
-        viz.width = (d3.select(viz.parentElement).node()
-            .getBoundingClientRect().width - viz.margin.left - viz.margin.right),
-        viz.height = 150 - viz.margin.top - viz.margin.bottom;
+        viz.width = viz.svg_width - viz.margin.left - viz.margin.right,
+        viz.height = viz.svg_height * 1/4 - viz.margin.top - viz.margin.bottom;
 
         // append the svg object to the chart div   
         viz.g = d3.select(viz.parentElement)
@@ -83,7 +84,7 @@ export default class TimeBrush {
 
         // Update scales
         viz.xScale.domain(d3.extent(viz.dataFiltered, d => d.date));
-        viz.yScale.domain([0, d3.max(viz.dataFiltered, d => d.total_case)]);
+        viz.yScale.domain([0, d3.max(viz.dataFiltered, d => d.total_active)]);
 
         // Update axes
         viz.xAxisCall.scale(viz.xScale);
@@ -94,7 +95,7 @@ export default class TimeBrush {
         viz.area = d3.area()
             .x(d => viz.xScale(d.date))
             .y0(viz.height)
-            .y1(d => viz.yScale(d.total_case))
+            .y1(d => viz.yScale(d.total_active))
 
         viz.areaPath
             .data([viz.dataFiltered])

@@ -36,8 +36,8 @@ let lineGraph, timeBrush, cases_data;
     );
 
     const changeView = () => {
-        let width = 960,
-            height = 720;
+        let width = 1200,
+            height = 660;
 
         // append the svg object to the chart div
         let svg = d3.select('#chart')
@@ -49,10 +49,10 @@ let lineGraph, timeBrush, cases_data;
             .attr('viewBox', '0 0 ' + width + ' ' + height);
 
         // Set object for nodes by time
-        lineGraph = new LineGraph('.chart-group', cases_data);
+        lineGraph = new LineGraph('.chart-group', cases_data, width, height);
         lineGraph.setupData();
 
-        timeBrush = new TimeBrush('.chart-group', cases_data, lineGraph);
+        timeBrush = new TimeBrush('.chart-group', cases_data, lineGraph, width, height);
         timeBrush.setupData();
 
         Legend.drawLegend('.chart-group');

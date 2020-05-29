@@ -2,9 +2,11 @@ import * as Helper from './js/Helper.js';
 
 // LineGraph Class
 export default class LineGraph {
-    constructor (_parentElement, data) {
+    constructor (_parentElement, data, width, height) {
         this.parentElement = _parentElement;
         this.data = data;
+        this.svg_width = width;
+        this.svg_height = height;
 
         this.initViz();
     };
@@ -13,9 +15,8 @@ export default class LineGraph {
         var viz = this;
 
         viz.margin = {top: 50, right: 60, bottom: 10, left: 140},
-        viz.width = (d3.select(viz.parentElement).node()
-            .getBoundingClientRect().width - viz.margin.left - viz.margin.right),
-        viz.height = 500 - viz.margin.top - viz.margin.bottom;
+        viz.width = viz.svg_width - viz.margin.left - viz.margin.right,
+        viz.height = viz.svg_height * 3/4 - viz.margin.top - viz.margin.bottom;
     
         // append the g object to the svg
         viz.g = d3.select(viz.parentElement)
