@@ -14,7 +14,7 @@ export default class LineGraph {
     initViz () {
         var viz = this;
 
-        viz.margin = {top: 150, right: 60, bottom: 10, left: 120},
+        viz.margin = {top: 250, right: 60, bottom: 10, left: 120},
         viz.width = viz.svg_width - viz.margin.left - viz.margin.right,
         viz.height = viz.svg_height * 3/4 - viz.margin.top - viz.margin.bottom;
     
