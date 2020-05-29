@@ -26,7 +26,7 @@ body {
 
 svg.chart-group {
     width: 100%;
-    max-width: 900px;
+    max-width: 1200px;
     font: 12px sans-serif;
 }
 
@@ -115,7 +115,6 @@ tooltip_div.tooltip {
 @media (min-width: 550px) {
     .wrapper {
         width: 97%;
-        max-width: 767px;
     }
 }
 
@@ -123,7 +122,6 @@ tooltip_div.tooltip {
 @media (min-width: 850px) {
     .wrapper {
         width: 97%;
-        max-width: 1200px;
         float: none;
     }
 }
