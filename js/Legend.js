@@ -8,7 +8,7 @@ const statuses = [
 
 export const drawLegend = (parentElement) => {
     let legend = d3.select(parentElement).append('g')
-        .attr('transform', 'translate(260,150)');
+        .attr('transform', 'translate(260,250)');
 
     statuses.forEach((elem, i) => {
         const legendRow = legend.append('g')
