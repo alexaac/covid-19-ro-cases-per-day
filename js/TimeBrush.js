@@ -84,7 +84,7 @@ export default class TimeBrush {
 
         // Update scales
         viz.xScale.domain(d3.extent(viz.dataFiltered, d => d.date));
-        viz.yScale.domain([0, d3.max(viz.dataFiltered, d => d.total_active)]);
+        viz.yScale.domain(d3.extent(viz.dataFiltered, d => d.total_active));
 
         // Update axes
         viz.xAxisCall.scale(viz.xScale);
