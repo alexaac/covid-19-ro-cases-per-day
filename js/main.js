@@ -1,4 +1,3 @@
-import * as Helper from './Helper.js';
 import * as Legend from './Legend.js';
 import LineGraph from './LineGraph.js';
 import TimeBrush from './TimeBrush.js';
@@ -66,7 +65,7 @@ let lineGraph, timeBrush, cases_data;
                 d3.select('#play-cases').classed('hide', true);
                 d3.select('#pause-cases').classed('hide', false);
                 flag = true;
-                Helper.animateBrush(timeBrush, flag);
+                animateBrush();
             });
         d3.select('#pause-cases')
             .on('click', () => {
@@ -75,6 +74,31 @@ let lineGraph, timeBrush, cases_data;
                 flag = false;
             });
 
+        const sleep = (ms) => {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        };
+
+        async function animateBrush() {
+            let brushStart = 0,
+                brushEnd = 0,
+                step = timeBrush.xScale.range()[1]/10;
+
+            for (let i=10; i>0; i--) {
+                brushEnd += step;
+
+                if (flag) {
+                    timeBrush.brushComponent.transition()
+                            .call(timeBrush.brush.move, [brushStart,brushEnd]);
+
+                    brushStart = brushEnd;
+                    await sleep(1000);
+                }
+            };
+            if (flag) {
+                d3.select('#play-cases').classed('hide', false);
+                d3.select('#pause-cases').classed('hide', true);
+            };
+        };
     };
 
 }).call(this);

@@ -101,29 +101,3 @@ const tooltipHTML = (d) => {
 };
 
 export const transition = () => d3.transition().duration(1000);
-
-const sleep = (ms) => {
-    return new Promise(resolve => setTimeout(resolve, ms));
-};
-
-export async function animateBrush(timeBrush, flag) {
-    let brushStart = 0,
-        brushEnd = 0,
-        step = timeBrush.xScale.range()[1]/10;
-
-    for (let i=10; i>0; i--) {
-        brushEnd += step;
-
-        if (flag) {
-            timeBrush.brushComponent.transition()
-                .call(timeBrush.brush.move, [brushStart,brushEnd]);
-
-            brushStart = brushEnd;
-            await sleep(1000);
-        }
-    };
-    if (flag) {
-        d3.select('#play-cases').classed('hide', false);
-        d3.select('#pause-cases').classed('hide', true);
-    }
-};
