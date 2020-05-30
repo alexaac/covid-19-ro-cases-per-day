@@ -12,6 +12,11 @@ body {
     padding: 0px;
 }
 
+h2 {
+    text-align: center;
+    font-weight: normal;
+}
+
 :root {
     --main-confirmate:#ffcd56 ;
     --main-recuperari: limegreen;
@@ -188,8 +193,8 @@ tooltip_div.tooltip {
     }
 
     .side-pannel {
-        left: 40px;
-        top: 55px;
+        left: 8px;
+        top: 50px;
         height: 500px;
         overflow-y: auto;
     }

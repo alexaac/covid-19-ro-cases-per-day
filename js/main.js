@@ -37,19 +37,17 @@ let lineGraph, timeBrush, cases_data;
     );
 
     const changeView = () => {
-        let margin = {top: 50, right: 0, bottom: 0, left: 0},
-            width = 900,
-            height = 760;
+        let width = 900,
+            height = 660;
 
         // append the svg object to the chart div
         let svg = d3.select('#chart')
             .append('svg')
             .attr('class', 'chart-group')
-            .attr('preserveAspectRatio', 'xMinYMin meet')
+            .attr('preserveAspectRatio', 'xMidYMin')
             .attr('width', width)
             .attr('height', height)
-            .attr('viewBox', '0 0 ' + width + ' ' + height)
-            .attr('transform',`translate(${margin.left},${margin.top})`);;
+            .attr('viewBox', '0 0 ' + width + ' ' + height);
 
         // Set object for nodes by time
         lineGraph = new LineGraph('.chart-group', cases_data, width, height);

@@ -14,9 +14,9 @@ export default class LineGraph {
     initViz () {
         var viz = this;
 
-        viz.margin = {top: 50, right: 60, bottom: 0, left: 100},
+        viz.margin = {top: 10, right: 60, bottom: 10, left: 100},
         viz.width = viz.svg_width - viz.margin.left - viz.margin.right,
-        viz.group_height = viz.svg_height * 3/4,
+        viz.group_height = viz.svg_height * 4/6,
         viz.height = viz.group_height - viz.margin.top - viz.margin.bottom;
     
         // append the g object to the svg
@@ -66,14 +66,14 @@ export default class LineGraph {
         viz.yAxis = viz.g.append('g')
             .attr('class', 'line-chart-y');
 
-        // Title
-        viz.title = viz.g.append('text')
-            .attr('x', (viz.width / 2))
-            .attr('y', 0 - (viz.margin.top / 4))
-            .attr('text-anchor', 'middle')
-            .style('font-size', '16px')
-            .style('text-decoration', 'underline')
-            .text('Evoluția cazurilor pe zile');
+        // // Title
+        // viz.title = viz.g.append('text')
+        //     .attr('x', (viz.width / 2))
+        //     .attr('y', 0 - (viz.margin.top / 4))
+        //     .attr('text-anchor', 'middle')
+        //     .style('font-size', '16px')
+        //     .style('text-decoration', 'underline')
+        //     .text('Evoluția cazurilor pe zile');
 
         viz.setupData();
     };
