@@ -1,3 +1,4 @@
+import * as Helper from './Helper.js';
 import * as Legend from './Legend.js';
 import LineGraph from './LineGraph.js';
 import TimeBrush from './TimeBrush.js';
@@ -36,7 +37,8 @@ let lineGraph, timeBrush, cases_data;
     );
 
     const changeView = () => {
-        let width = 1200,
+        let margin = {top: 50, right: 0, bottom: 0, left: 0},
+            width = 900,
             height = 760;
 
         // append the svg object to the chart div
@@ -46,7 +48,8 @@ let lineGraph, timeBrush, cases_data;
             .attr('preserveAspectRatio', 'xMinYMin meet')
             .attr('width', width)
             .attr('height', height)
-            .attr('viewBox', '0 0 ' + width + ' ' + height);
+            .attr('viewBox', '0 0 ' + width + ' ' + height)
+            .attr('transform',`translate(${margin.left},${margin.top})`);;
 
         // Set object for nodes by time
         lineGraph = new LineGraph('.chart-group', cases_data, width, height);
@@ -90,7 +93,7 @@ let lineGraph, timeBrush, cases_data;
                     timeBrush.brushComponent.transition()
                             .call(timeBrush.brush.move, [brushStart,brushEnd]);
 
-                    brushStart = brushEnd;
+                    // brushStart = brushEnd; // let chart accumulate for now
                     await sleep(1000);
                 }
             };

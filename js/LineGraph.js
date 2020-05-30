@@ -14,9 +14,10 @@ export default class LineGraph {
     initViz () {
         var viz = this;
 
-        viz.margin = {top: 250, right: 60, bottom: 10, left: 120},
+        viz.margin = {top: 50, right: 60, bottom: 0, left: 100},
         viz.width = viz.svg_width - viz.margin.left - viz.margin.right,
-        viz.height = viz.svg_height * 3/4 - viz.margin.top - viz.margin.bottom;
+        viz.group_height = viz.svg_height * 3/4,
+        viz.height = viz.group_height - viz.margin.top - viz.margin.bottom;
     
         // append the g object to the svg
         viz.g = d3.select(viz.parentElement)
@@ -123,13 +124,17 @@ export default class LineGraph {
                 .x(d => d.total_active !== 0 ? viz.xScale(d.date) : null)
                 .y(d => viz.yScale(d.total_active));
 
-            viz.linePathTotal.transition(Helper.transition)
+            viz.linePathTotal
+                // .transition(Helper.transition)
                 .attr('d', viz.valueline_total(viz.dataFiltered));
-            viz.linePathHealed.transition(Helper.transition)
+            viz.linePathHealed
+                // .transition(Helper.transition)
                 .attr('d', viz.valueline_healed(viz.dataFiltered));
-            viz.linePathDead.transition(Helper.transition)
+            viz.linePathDead
+                // .transition(Helper.transition)
                 .attr('d', viz.valueline_dead(viz.dataFiltered));
-            viz.linePathActive.transition(Helper.transition)
+            viz.linePathActive
+                // .transition(Helper.transition)
                 .attr('d', viz.valueline_active(viz.dataFiltered));
 
             // Scatterplot
@@ -143,7 +148,7 @@ export default class LineGraph {
                 .append('circle')
                     .attr('class', 'dot_total')
                 .merge(viz.circles1_update)
-                    .transition(Helper.transition)
+                    // .transition(Helper.transition)
                         .attr('r', 3)
                         .attr('cx', d => viz.xScale(d.date))
                         .attr('cy', d => viz.yScale(d.total_case));
@@ -158,7 +163,7 @@ export default class LineGraph {
                 .append('circle')
                     .attr('class', 'dot_healed')
                 .merge(viz.circles2_update)
-                    .transition(Helper.transition)
+                    // .transition(Helper.transition)
                         .attr('r', 3)
                         .attr('cx', d => d.total_healed !== 0 ? viz.xScale(d.date) : null)
                         .attr('cy', d => viz.yScale(d.total_healed));
@@ -173,7 +178,7 @@ export default class LineGraph {
                 .append('circle')
                     .attr('class', 'dot_dead')
                 .merge(viz.circles3_update)
-                    .transition(Helper.transition)
+                    // .transition(Helper.transition)
                         .attr('r', 3)
                         .attr('cx', d => d.total_dead !== 0 ? viz.xScale(d.date) : null)
                         .attr('cy', d => viz.yScale(d.total_dead));
@@ -188,7 +193,7 @@ export default class LineGraph {
                 .append('circle')
                     .attr('class', 'dot_active')
                 .merge(viz.circles4_update)
-                    .transition(Helper.transition)
+                    // .transition(Helper.transition)
                         .attr('r', 3)
                         .attr('cx', d => d.total_active !== 0 ? viz.xScale(d.date) : null)
                         .attr('cy', d => viz.yScale(d.total_active));

@@ -101,3 +101,22 @@ const tooltipHTML = (d) => {
 };
 
 export const transition = () => d3.transition().duration(1000);
+
+export const drawButtons = (parentElement) => {
+    let play = d3.select(parentElement).append('g')
+        .classed('play-group', true)
+        .attr('transform',
+            'translate(260,50)');
+    let playButton = play.append('rect')
+        .append('a')
+            .attr('class', 'play-icon')
+            .attr('id', 'play-cases')
+            .attr('href', '#')
+            .attr('title', 'Play');
+    let pauseButton = play.append('rect')
+        .append('a')
+            .attr('class', 'pause-icon')
+            .attr('id', 'pause-cases')
+            .attr('href', '#')
+            .attr('title', 'Pause');
+};

@@ -15,15 +15,16 @@ export default class TimeBrush {
     initViz () {
         var viz = this;
 
-        viz.margin = {top: 10, right: 60, bottom: 10, left: 120},
+        viz.margin = {top: 50, right: 60, bottom: 60, left: 100},
         viz.width = viz.svg_width - viz.margin.left - viz.margin.right,
-        viz.height = viz.svg_height * 1/4 - viz.margin.top - viz.margin.bottom;
+        viz.group_height = viz.svg_height * 1/4,
+        viz.height = viz.group_height - viz.margin.top - viz.margin.bottom;
 
         // append the svg object to the chart div   
         viz.g = d3.select(viz.parentElement)
             .append('g')
             .attr('transform',
-                'translate(' + viz.margin.left + ',' + (viz.lineGraph.height + viz.margin.top + 300) + ')');
+                'translate(' + viz.margin.left + ',' + (viz.svg_height * 3/4 + viz.margin.top) + ')');
         
         viz.t = () => { return d3.transition().duration(1000); }
 
