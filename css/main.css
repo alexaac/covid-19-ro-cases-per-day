@@ -193,7 +193,7 @@ tooltip_div.tooltip {
     }
 
     .side-pannel {
-        left: 8px;
+        left: 3px;
         top: 50px;
         height: 500px;
         overflow-y: auto;
