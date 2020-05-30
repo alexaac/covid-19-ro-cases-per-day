@@ -37,7 +37,7 @@ let lineGraph, timeBrush, cases_data;
     );
 
     const changeView = () => {
-        let width = 900,
+        let width = 1000,
             height = 660;
 
         // append the svg object to the chart div
