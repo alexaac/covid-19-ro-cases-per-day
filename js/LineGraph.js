@@ -48,7 +48,7 @@ export default class LineGraph {
         viz.yLabel = viz.g.append('text')
             .attr('transform', 'rotate(-90)')
             .attr('y', -60)
-            .attr('x', -170)
+            .attr('x', -(viz.group_height / 2))
             .attr('font-size', '16px')
             .attr('text-anchor', 'middle')
             .text('Număr de persoane');
