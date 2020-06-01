@@ -18,7 +18,7 @@ export default class TimeBrush {
         viz.margin = {
             top: 10,
             right: 60,
-            bottom: window.innerWidth <= 340
+            bottom: window.innerWidth <= 360
                 ? 60
                 : window.innerWidth <= 960
                     ? 90

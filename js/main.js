@@ -37,7 +37,7 @@ let lineGraph, timeBrush, cases_data;
     );
 
     const changeView = () => {
-        let width = window.innerWidth <= 340
+        let width = window.innerWidth <= 360
                 ? 600
                 : window.innerWidth <= 960
                     ? 1000
