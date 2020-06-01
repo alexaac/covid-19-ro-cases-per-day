@@ -14,9 +14,9 @@ export default class LineGraph {
     initViz () {
         var viz = this;
 
-        viz.margin = {top: 10, right: 60, bottom: 10, left: 100},
+        viz.margin = {top: 10, right: 60, bottom: 0, left: 100},
         viz.width = viz.svg_width - viz.margin.left - viz.margin.right,
-        viz.group_height = viz.svg_height * 4/6,
+        viz.group_height = viz.svg_height * 2/3,
         viz.height = viz.group_height - viz.margin.top - viz.margin.bottom;
     
         // append the g object to the svg

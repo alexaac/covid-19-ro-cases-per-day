@@ -37,8 +37,12 @@ let lineGraph, timeBrush, cases_data;
     );
 
     const changeView = () => {
-        let width = 1000,
-            height = 660;
+        let width = window.innerWidth <= 340
+                ? 600
+                : window.innerWidth <= 960
+                    ? 1000
+                    : 1200,
+            height = 2/3 * width;
 
         // append the svg object to the chart div
         let svg = d3.select('#chart')
