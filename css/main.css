@@ -17,6 +17,10 @@ h2 {
     font-weight: normal;
 }
 
+text {
+    user-select: none;
+}
+
 :root {
     --main-confirmate:#ffcd56 ;
     --main-recuperari: limegreen;
