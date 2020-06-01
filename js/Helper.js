@@ -53,7 +53,7 @@ export const setFocus = (parentElement, xScale, yScale, width, height, dataFilte
 
     parentElement.append('rect')
         .attr('class', 'overlay')
-        .attr('width', width)
+        .attr('width', width + 50)
         .attr('height', height)
         .on('mouseover', () => { focus.style('display', null); tooltip_div.style('display', null); })
         .on('mouseout', () => { focus.style('display', 'none'); tooltip_div.style('display', 'none'); })
