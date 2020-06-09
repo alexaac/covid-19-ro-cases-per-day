@@ -42,7 +42,12 @@ let lineGraph, timeBrush, cases_data;
                 : window.innerWidth <= 960
                     ? 1000
                     : 1200,
-            height = 2/3 * width;
+            height = 2/3 * width,
+            radius = window.innerWidth <= 360
+                ? 1
+                : window.innerWidth <= 960
+                    ? 2
+                    : 3;
 
         // append the svg object to the chart div
         let svg = d3.select('#chart')
@@ -54,10 +59,10 @@ let lineGraph, timeBrush, cases_data;
             .attr('viewBox', '0 0 ' + width + ' ' + height);
 
         // Set object for nodes by time
-        lineGraph = new LineGraph('.chart-group', cases_data, width, height);
+        lineGraph = new LineGraph('.chart-group', cases_data, width, height, radius);
         lineGraph.setupData();
 
-        timeBrush = new TimeBrush('.chart-group', cases_data, lineGraph, width, height);
+        timeBrush = new TimeBrush('.chart-group', cases_data, lineGraph, width, height, radius);
         timeBrush.setupData();
 
         Legend.drawLegend('.chart-group');

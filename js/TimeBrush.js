@@ -2,12 +2,13 @@ import * as Helper from './Helper.js';
 
 // TimeBrush Class
 export default class TimeBrush {
-    constructor (_parentElement, data, lineGraph, width, height) {
+    constructor (_parentElement, data, lineGraph, width, height, radius) {
         this.parentElement = _parentElement;
         this.data = data;
         this.lineGraph = lineGraph;
         this.svg_width = width;
         this.svg_height = height;
+        this.r = radius;
 
         this.initViz();
     };
@@ -66,8 +67,24 @@ export default class TimeBrush {
             var newValues = selection.map(viz.xScale.invert);
         
             viz.lineGraph.setupData(newValues);
+
+            let rangeDiff = viz.xScale.range()[1] - viz.xScale.range()[0],
+                selDiff = selection[1] - selection[0],
+                selReport = selDiff/rangeDiff,
+                radius;
+
+            if (window.innerWidth <= 360) {
+                radius = (selReport < 0.4)
+                    ? viz.r * 3
+                    : (selReport < 0.8)
+                        ? viz.r * 2
+                        : viz.r;
+                d3.select(viz.parentElement).selectAll('circle')
+                    .attr('r', radius);
+            }
+
         };
-        
+
         viz.brush = d3.brushX()
             .handleSize(10)
             .extent([[0, 0], [viz.width, viz.height]])
@@ -77,7 +94,7 @@ export default class TimeBrush {
         viz.brushComponent = viz.g.append('g')
             .attr('class', 'brush')
             .call(viz.brush);
-
+        
         viz.setupData();
     };
 

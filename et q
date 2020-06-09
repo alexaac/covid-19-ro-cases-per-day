@@ -1,0 +1,227 @@
+[33mcommit c6c9a70c185f9a3b2fca00590225688509854dc8[m[33m ([m[1;36mHEAD -> [m[1;32mgh-pages[m[33m)[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Mon Jun 1 23:09:02 2020 +0300
+
+    Prevent texy select
+
+[33mcommit a746ab6474c433d8ded26d65e1476fcb01b73adf[m[33m ([m[1;31morigin/gh-pages[m[33m)[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Mon Jun 1 23:04:41 2020 +0300
+
+    Revert
+
+[33mcommit 352ec5aac7c27ba469dd180ff9d660131d699342[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Mon Jun 1 23:02:02 2020 +0300
+
+    Try to fix tap on mobile
+
+[33mcommit 9127cfe3a4bdf18949a8e59a897a434aa33da7dc[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Mon Jun 1 22:53:00 2020 +0300
+
+    Change width and height relative to media width
+
+[33mcommit b6543093bcd8beb2f5aea2756e125cd484ee98e1[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Mon Jun 1 22:50:29 2020 +0300
+
+    Change width and height relative to media width
+
+[33mcommit 2e3ca7b8769636e0478a06bef5d32e9c51bf2971[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Sat May 30 23:26:35 2020 +0300
+
+    Moved title outside svg
+
+[33mcommit 54bc6d96ee47a603f4f5cc6f2ffa8b3858ae825c[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Sat May 30 23:22:42 2020 +0300
+
+    Moved title outside svg
+
+[33mcommit 6c19bef4b9c9f03fe9e5cb9e6ebc4977e6a377e3[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Sat May 30 23:20:14 2020 +0300
+
+    Moved title outside svg
+
+[33mcommit 037214f1813a2711af8544565b48defff84007b8[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Sat May 30 23:15:07 2020 +0300
+
+    Moved title outside svg
+
+[33mcommit 0b19039d701212201bb1f4997ecb7479337572fc[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Sat May 30 20:04:15 2020 +0300
+
+    Accumulate on play; scaling fixes
+
+[33mcommit 9c7959c7c5f6fd0053b6599c87eabb45a81cbc5f[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Sat May 30 19:55:35 2020 +0300
+
+    Accumulate on play; scaling fixes
+
+[33mcommit d03748471fd42617b557c3b8686412a9001d5c09[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Fri May 29 22:31:18 2020 +0300
+
+    Added animation
+
+[33mcommit 965baee6c8a27846c3d3c65e1a4270d83af26e9f[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Fri May 29 22:30:39 2020 +0300
+
+    Added animation
+
+[33mcommit 12aad8f12158430169ce06948f233c35fc9ab850[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Fri May 29 22:25:26 2020 +0300
+
+    Added animation
+
+[33mcommit f749b85354768ac1628ab376f8ddf294691d8f30[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Fri May 29 22:09:31 2020 +0300
+
+    Added animation
+
+[33mcommit b7a4e2fb571abff1c16d708408a8254b36d98abf[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Fri May 29 18:46:33 2020 +0300
+
+    Moved legend
+
+[33mcommit bd8f14126432f789ad55767d3bd8fe64035cd65e[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Fri May 29 18:42:47 2020 +0300
+
+    Scale people axis on brush
+
+[33mcommit 204faa4908d0ccc521f4d26d81bfa9e40837976d[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Fri May 29 18:31:27 2020 +0300
+
+    Changed folder structure
+
+[33mcommit 55bfe1639ad083127c7ade3213e9aff16e8cddd2[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Fri May 29 18:30:39 2020 +0300
+
+    Changed folder structure
+
+[33mcommit c13c666917b0b11d8d4dafec05f7adb30f5b3b8f[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Fri May 29 18:26:31 2020 +0300
+
+    Fixed mobile aspect ratio; use active cases for area graph
+
+[33mcommit 7559c5f8cb4482b2a67dc35ba1317b147dfc8b83[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Fri May 29 18:10:42 2020 +0300
+
+    Fixed mobile aspect ratio; use active cases for area graph
+
+[33mcommit d080870c084a9f813965da0dcecfb3601698b4b2[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Fri May 29 18:09:17 2020 +0300
+
+    Fixed mobile aspect ratio; use active cases for area graph
+
+[33mcommit 27e9c3e28c531890878a18495eeebc5f3e501e9d[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Fri May 29 18:03:49 2020 +0300
+
+    Fixed mobile aspect ratio; use active cases for area graph
+
+[33mcommit 03d58d99e87dffda860bd5b25a130c1eee098c0a[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Wed May 27 22:14:50 2020 +0300
+
+    Cleaning
+
+[33mcommit 540599a078b6592ee6c2e4cd003b909aad053eb0[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Wed May 27 22:06:59 2020 +0300
+
+    Cleaning
+
+[33mcommit 1c8042cfa714ce79c092c6153f77eed1344a2c07[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Wed May 27 22:05:17 2020 +0300
+
+    Cleaning
+
+[33mcommit 09dda8ec3b355fc097264bfd7bf67be9032010e7[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Wed May 27 19:59:03 2020 +0300
+
+    Added active cases with blue; changed color for confirmed cases to yellow
+
+[33mcommit 0aef7b84a97ef79159aec87e6c37745f1de41136[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Wed May 27 19:09:23 2020 +0300
+
+    Added brush to select smaller time intervals
+
+[33mcommit ae44147bffb176cd893d0d6324e5f566f51af8a7[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Wed May 27 19:06:28 2020 +0300
+
+    Added brush to select smaller time intervals
+
+[33mcommit 5dc2d76fa12ecdd2852052afcde17fc061260d80[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Sun May 24 19:48:39 2020 +0300
+
+    Move to class
+
+[33mcommit dd7d72227bd688d4e4833f875962fa7202157285[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Tue Apr 7 20:17:32 2020 +0300
+
+    Colored dots
+
+[33mcommit 5222b6dfd36372352faa6131f815b95714647f75[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Tue Apr 7 20:14:43 2020 +0300
+
+    Colored dots
+
+[33mcommit 8be4f0323fe46c29bdb234b7e2a1026feff16513[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Fri Apr 3 22:37:15 2020 +0300
+
+    Smaller labels
+
+[33mcommit d28910662331446023999c6b26969bc9fea993e8[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Fri Apr 3 22:29:27 2020 +0300
+
+    Smaller dots
+
+[33mcommit b99bd29bc788d8f2b6a2f8ffa70764da852e163e[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Sat Mar 14 00:37:02 2020 +0200
+
+    Removed dummy readme
+
+[33mcommit 5adf3e876d1db92c24a1484982650edaaf2668d2[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Sat Mar 14 00:35:41 2020 +0200
+
+    Removed dummy json
+
+[33mcommit 8a92a9242a77151aa6b4f42cdadabaa0793db2d3[m[33m ([m[1;32mmaster[m[33m)[m
+Author: Alexa Cristina <ac@mysite.org>
+Date:   Sat Mar 14 00:34:25 2020 +0200
+
+    COVID-19 daily cases reports in Romania
+
+[33mcommit 47a2cf45f6bae96c659e033cee595fb292ff963f[m
+Author: Alexa Cristina <52584675+alexaac@users.noreply.github.com>
+Date:   Sat Mar 14 00:31:24 2020 +0200
+
+    Initial commit

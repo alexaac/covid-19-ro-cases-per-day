@@ -2,11 +2,12 @@ import * as Helper from './Helper.js';
 
 // LineGraph Class
 export default class LineGraph {
-    constructor (_parentElement, data, width, height) {
+    constructor (_parentElement, data, width, height, radius) {
         this.parentElement = _parentElement;
         this.data = data;
         this.svg_width = width;
         this.svg_height = height;
+        this.r = radius;
 
         this.initViz();
     };
@@ -149,7 +150,7 @@ export default class LineGraph {
                     .attr('class', 'dot_total')
                 .merge(viz.circles1_update)
                     // .transition(Helper.transition)
-                        .attr('r', 3)
+                        .attr('r', viz.r)
                         .attr('cx', d => viz.xScale(d.date))
                         .attr('cy', d => viz.yScale(d.total_case));
 
@@ -164,7 +165,7 @@ export default class LineGraph {
                     .attr('class', 'dot_healed')
                 .merge(viz.circles2_update)
                     // .transition(Helper.transition)
-                        .attr('r', 3)
+                        .attr('r', viz.r)
                         .attr('cx', d => d.total_healed !== 0 ? viz.xScale(d.date) : null)
                         .attr('cy', d => viz.yScale(d.total_healed));
 
@@ -179,7 +180,7 @@ export default class LineGraph {
                     .attr('class', 'dot_dead')
                 .merge(viz.circles3_update)
                     // .transition(Helper.transition)
-                        .attr('r', 3)
+                        .attr('r', viz.r)
                         .attr('cx', d => d.total_dead !== 0 ? viz.xScale(d.date) : null)
                         .attr('cy', d => viz.yScale(d.total_dead));
 
@@ -194,7 +195,7 @@ export default class LineGraph {
                     .attr('class', 'dot_active')
                 .merge(viz.circles4_update)
                     // .transition(Helper.transition)
-                        .attr('r', 3)
+                        .attr('r', viz.r)
                         .attr('cx', d => d.total_active !== 0 ? viz.xScale(d.date) : null)
                         .attr('cy', d => viz.yScale(d.total_active));
 
