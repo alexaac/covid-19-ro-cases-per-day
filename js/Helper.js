@@ -94,9 +94,9 @@ const tooltipHTML = (d) => {
     let language = d3.select('#language').node().value;
     let labels = {
         ziuaLabel: { 'ro': 'Ziua', 'en': 'Day' },
-        totalActiveLabel: { 'ro': 'Cazuri active total', 'en': 'Total active cases' },
-        newConfirmedLabel: { 'ro': 'Cazuri confirmate noi', 'en': 'New confirmed cases' },
-        totalConfirmedLabel: { 'ro': 'Cazuri confirmate total', 'en': 'Total confirmed cases' },
+        totalActiveLabel: { 'ro': 'Cazuri active total', 'en': 'Total active' },
+        newConfirmedLabel: { 'ro': 'Cazuri confirmate noi', 'en': 'New confirmed' },
+        totalConfirmedLabel: { 'ro': 'Cazuri confirmate total', 'en': 'Total confirmed' },
         newRecoveriesLabel: { 'ro': 'Recuperări noi', 'en': 'New recoveries' },
         totalRecoveriesLabel: { 'ro': 'Recuperări total', 'en': 'Total recoveries' },
         newDeceasedLabel: { 'ro': 'Decese noi', 'en': 'New deaths' },
