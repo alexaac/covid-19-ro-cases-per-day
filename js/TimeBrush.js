@@ -16,6 +16,8 @@ export default class TimeBrush {
     initViz () {
         var viz = this;
 
+        let language = d3.select('#language').node().value;
+
         viz.margin = {
             top: 10,
             right: 60,
@@ -56,7 +58,9 @@ export default class TimeBrush {
             .attr('x', viz.width / 2)
             .attr('font-size', '16px')
             .attr('text-anchor', 'middle')
-            .text('Perioadă de timp');
+            .text(() => { return language === 'ro'
+                ? 'Perioadă de timp'
+                : 'Time' });
 
         viz.areaPath = viz.g.append('path')
             .attr('class', 'area-path');

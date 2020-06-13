@@ -15,6 +15,8 @@ export default class LineGraph {
     initViz () {
         var viz = this;
 
+        let language = d3.select('#language').node().value;
+
         viz.margin = {top: 10, right: 60, bottom: 0, left: 100},
         viz.width = viz.svg_width - viz.margin.left - viz.margin.right,
         viz.group_height = viz.svg_height * 2/3,
@@ -52,7 +54,9 @@ export default class LineGraph {
             .attr('x', -(viz.group_height / 2))
             .attr('font-size', '16px')
             .attr('text-anchor', 'middle')
-            .text('Număr de persoane');
+            .text(() => { return language === 'ro'
+                ? 'Număr de persoane'
+                : 'People' });
 
         // Set scales
         viz.xScale = d3.scaleTime().range([0, viz.width]);

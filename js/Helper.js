@@ -89,15 +89,28 @@ const highlight = (d) => {
     };
 
 const tooltipHTML = (d) => {
+
     const ro_date = d3.timeFormat('%Y-%m-%d')(d.date);
-    return '<b>Ziua ' + d.day_no + ' (' + ro_date + ')</b><br />' +
-            'Cazuri active total: ' + d.total_active + '<br />' +
-            'Cazuri confirmate noi: ' + d.new_case_no + '<br />' +
-            'Cazuri confirmate total: ' + d.total_case + '<br />' +
-            'Recuperări noi: ' + d.new_healed_no + '<br />' +
-            'Recuperări total: ' + d.total_healed + '<br />' +
-            'Decese noi: ' + d.new_dead_no + '<br />' +
-            'Decese total: ' + d.total_dead + '<br />';
+    let language = d3.select('#language').node().value;
+    let labels = {
+        ziuaLabel: { 'ro': 'Ziua', 'en': 'Day' },
+        totalActiveLabel: { 'ro': 'Cazuri active total', 'en': 'Total active cases' },
+        newConfirmedLabel: { 'ro': 'Cazuri confirmate noi', 'en': 'New confirmed cases' },
+        totalConfirmedLabel: { 'ro': 'Cazuri confirmate total', 'en': 'Total confirmed cases' },
+        newRecoveriesLabel: { 'ro': 'Recuperări noi', 'en': 'New recoveries' },
+        totalRecoveriesLabel: { 'ro': 'Recuperări total', 'en': 'Total recoveries' },
+        newDeceasedLabel: { 'ro': 'Decese noi', 'en': 'New deaths' },
+        totalDeceasedLabel: { 'ro': 'Decese total', 'en': 'Total deaths' }
+    };
+
+    return '<b>' + labels.ziuaLabel[language] + ' ' + d.day_no + ' (' + ro_date + ')</b><br />' +
+            labels.totalActiveLabel[language] + ': ' + d.total_active + '<br />' +
+            labels.newConfirmedLabel[language] + ': ' + d.new_case_no + '<br />' +
+            labels.totalConfirmedLabel[language] + ': ' + d.total_case + '<br />' +
+            labels.newRecoveriesLabel[language] + ': ' + d.new_healed_no + '<br />' +
+            labels.totalRecoveriesLabel[language] + ': ' + d.total_healed + '<br />' +
+            labels.newDeceasedLabel[language] + ': ' + d.new_dead_no + '<br />' +
+            labels.totalDeceasedLabel[language] + ': ' + d.total_dead + '<br />';
 };
 
 export const transition = () => d3.transition().duration(1000);
