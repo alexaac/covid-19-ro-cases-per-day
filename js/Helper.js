@@ -53,7 +53,7 @@ export const setFocus = (parentElement, xScale, yScale, width, height, dataFilte
 
     parentElement.append('rect')
         .attr('class', 'overlay')
-        .attr('width', width)
+        .attr('width', width + 100)
         .attr('height', height)
         .on('mouseover', () => { focus.style('display', null); tooltip_div.style('display', null); })
         .on('mouseout', () => { focus.style('display', 'none'); tooltip_div.style('display', 'none'); })
@@ -61,11 +61,11 @@ export const setFocus = (parentElement, xScale, yScale, width, height, dataFilte
 
     let bisectDate = d3.bisector(d => d.date).left;
 
-    function mousemove() {
+    function mousemove() {console.log(dataFiltered);
         const x0 = xScale.invert(d3.mouse(this)[0]),
             i = bisectDate(dataFiltered, x0, 1),
             d0 = dataFiltered[i - 1],
-            d1 = dataFiltered[i],
+            d1 = dataFiltered[i] || dataFiltered[dataFiltered.length - 1],
             d = x0 - d0.date > d1.date - x0 ? d1 : d0;
         focus.attr('transform', 'translate(' + xScale(d.date) + ',' + yScale(d.total_case) + ')');
         focus.select('.x-hover-line').attr('y2', height - yScale(d.total_case));
