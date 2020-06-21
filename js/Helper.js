@@ -61,7 +61,7 @@ export const setFocus = (parentElement, xScale, yScale, width, height, dataFilte
 
     let bisectDate = d3.bisector(d => d.date).left;
 
-    function mousemove() {console.log(dataFiltered);
+    function mousemove() {
         const x0 = xScale.invert(d3.mouse(this)[0]),
             i = bisectDate(dataFiltered, x0, 1),
             d0 = dataFiltered[i - 1],

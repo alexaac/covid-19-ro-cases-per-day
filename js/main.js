@@ -4,6 +4,7 @@ import LineGraph from './LineGraph.js';
 import TimeBrush from './TimeBrush.js';
 
 let lineGraph, timeBrush, cases_data;
+let searchStatus = true;
 
 (() => {
     // https://bl.ocks.org/d3noob/a44d21b304b9f7260a284b1883232002/1b3a420bb9f51c00003974fda2497625380c7cb9
@@ -66,6 +67,33 @@ let lineGraph, timeBrush, cases_data;
         timeBrush.setupData();
 
         Legend.drawLegend('.chart-group');
+
+        // Select graph
+        d3.select('#case-select')
+            .on("change", function() {
+                caseChanged();
+            });
+
+        d3.select('.case-select').classed('hide', true);
+        d3.select('#filter-case')
+            .on('click', () => {
+                if (searchStatus === true) {
+                    d3.select('.case-select').classed('hide', false);
+                    searchStatus = false;
+                } else {
+                    d3.select('.case-select').classed('hide', true);
+                    searchStatus = true;
+                };
+            });
+
+        const caseChanged = () => {
+            var selection = [d3.select('#min-x').node().value, d3.select('#max-x').node().value];
+            console.log(selection);
+            var newValues = selection.map(timeBrush.xScale.invert);
+            lineGraph.setupData(newValues);
+            // timeBrush.brushComponent.transition()
+            //     .call(timeBrush.brush.move, lineGraph.xScale.range());
+        };
 
         // Start/stop the brush animation
         var flag = false;

@@ -70,6 +70,9 @@ export default class TimeBrush {
             var selection = d3.event.selection || viz.xScale.range();
             var newValues = selection.map(viz.xScale.invert);
         
+            d3.select('#min-x').property('value', selection[0]);
+            d3.select('#max-x').property('value', selection[1]);
+
             viz.lineGraph.setupData(newValues);
 
             let rangeDiff = viz.xScale.range()[1] - viz.xScale.range()[0],

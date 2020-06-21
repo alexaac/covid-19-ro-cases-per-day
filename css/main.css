@@ -41,8 +41,8 @@ svg.chart-group {
 
 path { 
     stroke: grey;
-    stroke-width: 2;
     fill: none;
+    stroke-width: 1;
 }
 
 .area-path {
@@ -120,13 +120,22 @@ tooltip_div.tooltip {
     pointer-events: none;
 }
 
-.side-pannel {
-    position: absolute;
-    left: 10px;
-    top: 0;
+.side-pannel-left, .side-pannel-right {
     z-index: 100;
     font-size: 12px;
     pointer-events: none;
+}
+
+.side-pannel-left {
+    position: absolute;
+    left: 10px;
+    top: 0;
+}
+
+.side-pannel-right {
+    position: absolute;
+    right: 30px;
+    top: 0;
 }
 
 .control {
@@ -175,6 +184,14 @@ tooltip_div.tooltip {
 	border-bottom-right-radius: 2px;
 }
 
+.case-select {
+    z-index: 100;
+    font-size: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
 /* http://alessioatzeni.com/metrize-icons/ */
 
 .play-icon {
@@ -183,6 +200,10 @@ tooltip_div.tooltip {
 
 .pause-icon {
     background-image: url(../icons/pause.svg);
+}
+
+.filter-icon {
+    background-image: url(../icons/sliders.svg);
 }
 
 .hide {

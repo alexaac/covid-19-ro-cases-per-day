@@ -13,15 +13,30 @@
     <body>
         <div class="wrapper">
             <h2>Cases Evolution per Day</h2>
-            <div class="side-pannel">
+            <div class="side-pannel-left">
                 <div class="control control-group">
                     <a id="play-cases" class="play-icon" href="#" title="Play"></a>
                     <a id="pause-cases" class="pause-icon hide" href="#" title="Pause"></a>
                 </div>
             </div>
+            <div class="side-pannel-right">
+                <div class="control control-group">
+                    <a id="filter-case" class="filter-icon" href="#" title="Select graphic type"></a>
+                </div>
+            </div>
+
+            <select id="case-select" class="case-select">
+                <option selected value="all">All</option>
+                <option value="total_case">Confirmed</option>
+                <option value="total_active">Active</option>
+                <option value="total_healed">Recovered</option>
+                <option value="total_dead">Deceased</option>
+            </select>
 
             <div id="chart"></div>
             <input type="hidden" id="language" name="language" value="en">
+            <input type="hidden" id="min-x" name="min-x" value="">
+            <input type="hidden" id="max-x" name="max-x" value="">
         </div>
 
         <script src="../js/d3.v5.min.js"></script>
