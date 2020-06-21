@@ -101,7 +101,7 @@ export default class LineGraph {
         if (viz.dataFiltered !== undefined) {
             // Update scales
             viz.xScale.domain(d3.extent(viz.dataFiltered, d => d.date));
-            viz.yScale.domain([0, d3.max(viz.dataFiltered, d => d.total_case)]);
+            viz.yScale.domain([d3.min(viz.dataFiltered, d => d.total_case), d3.max(viz.dataFiltered, d => d.total_case)]);
 
             // Update axes
             viz.xAxisCall.scale(viz.xScale);
