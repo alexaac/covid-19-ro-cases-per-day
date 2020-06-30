@@ -52,7 +52,7 @@ svg.chart-group {
     stroke-width: 2;
 }
 
-path {
+path { 
     stroke: grey;
     fill: none;
     stroke-width: 0.1;
