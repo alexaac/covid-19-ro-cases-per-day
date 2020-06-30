@@ -94,13 +94,13 @@ const tooltipHTML = (d) => {
     let language = d3.select('#language').node().value;
     let labels = {
         ziuaLabel: { 'ro': 'Ziua', 'en': 'Day' },
-        totalActiveLabel: { 'ro': 'Cazuri active total', 'en': 'Total active' },
-        newConfirmedLabel: { 'ro': 'Cazuri confirmate noi', 'en': 'New confirmed' },
-        totalConfirmedLabel: { 'ro': 'Cazuri confirmate total', 'en': 'Total confirmed' },
-        newRecoveriesLabel: { 'ro': 'Recuperări noi', 'en': 'New recoveries' },
-        totalRecoveriesLabel: { 'ro': 'Recuperări total', 'en': 'Total recoveries' },
-        newDeceasedLabel: { 'ro': 'Decese noi', 'en': 'New deaths' },
-        totalDeceasedLabel: { 'ro': 'Decese total', 'en': 'Total deaths' }
+        totalActiveLabel: { 'ro': 'Total cazuri active', 'en': 'Total active cases' },
+        newConfirmedLabel: { 'ro': 'Noi confirmate', 'en': 'New confirmed' },
+        totalConfirmedLabel: { 'ro': 'Total confirmate', 'en': 'Total confirmed' },
+        newRecoveriesLabel: { 'ro': 'Noi recuperări', 'en': 'New recoveries' },
+        totalRecoveriesLabel: { 'ro': 'Total recuperări', 'en': 'Total recoveries' },
+        newDeceasedLabel: { 'ro': 'Noi decese', 'en': 'New deaths' },
+        totalDeceasedLabel: { 'ro': 'Total decese', 'en': 'Total deaths' }
     };
 
     return '<b>' + labels.ziuaLabel[language] + ' ' + d.day_no + ' (' + ro_date + ')</b><br />' +

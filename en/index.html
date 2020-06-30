@@ -13,12 +13,12 @@
         <meta property="article:publisher" content="https://alexaac.github.io" />
         <meta property="article:section" content="Graphic" />
         <meta property="article:tag" content="Graphic" />
-        <meta property="og:image" content="https://alexaac.github.io/covid-19-ro-cases-per-day/img/og_image_1200x630.png" />
+        <meta property="og:image" content="https://alexaac.github.io/covid-19-ro-cases-per-day/img/og_image_pd_en_1200_630.png" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:image" content="https://alexaac.github.io/covid-19-ro-cases-per-day/img/og_image_1200x630.png" />
+        <meta property="twitter:image" content="https://alexaac.github.io/covid-19-ro-cases-per-day/img/og_image_pd_en_1200_630.png" />
         <meta property="twitter:site" content="@maptheclouds" />
 
         <title>COVID-19 in România - Case numbers per day</title>
@@ -42,11 +42,14 @@
             </div>
 
             <select id="case-select" class="case-select">
-                <option selected value="all">All</option>
-                <option value="total_case">Confirmed</option>
-                <option value="total_active">Active</option>
-                <option value="total_healed">Recovered</option>
-                <option value="total_dead">Deceased</option>
+                <option selected value="all">Total</option>
+                <option value="total_active">Total active cases</option>
+                <option value="new_case_no">New confirmed</option>
+                <option value="total_case">Total confirmed</option>
+                <option value="new_healed_no">New recoveries</option>
+                <option value="total_healed">Total recoveries</option>
+                <option value="new_dead_no">New deaths</option>
+                <option value="total_dead">Total deaths</option>
             </select>
 
             <div id="chart"></div>

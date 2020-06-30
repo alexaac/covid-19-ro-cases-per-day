@@ -31,6 +31,8 @@ text {
 .wrapper {
     margin: 0 20;
     max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 svg.chart-group {
@@ -39,31 +41,32 @@ svg.chart-group {
     font: 12px sans-serif;
 }
 
-path { 
-    stroke: grey;
-    fill: none;
-    stroke-width: 1;
-}
-
 .area-path {
     stroke: none;
     fill: #ccc;
 }
 
-.axis path, line {
+.line-chart-x path, .line-chart-y path {
     fill: none;
     stroke: grey;
-    stroke-width: 1;
-    shape-rendering: crispEdges;
+    stroke-width: 2;
 }
 
-.line_total {
+path {
+    stroke: grey;
+    fill: none;
+    stroke-width: 0.1;
+    shape-rendering: geometricPrecision;
+    stroke-linejoin: round;
+}
+
+.line_total, .line_total_per_day {
     stroke: var(--main-confirmate);
 }
-.line_healed {
+.line_healed, .line_healed_per_day {
     stroke: var(--main-recuperari);
 }
-.line_dead {
+.line_dead, .line_dead_per_day {
     stroke: var(--main-decese);
 }
 .line_active {

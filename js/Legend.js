@@ -1,8 +1,8 @@
 // Legend
 const statuses = (language) => {
     return [
-        { status: 'total', color: 'var(--main-confirmate)', label: () => { return language === 'ro' ? 'Cazuri confirmate' : 'Confirmed Cases'} },
-        { status: 'active', color: 'var(--main-active)', label: 'Active' },
+        { status: 'active', color: 'var(--main-active)', label: () => { return language === 'ro' ? 'Cazuri active' : 'Active cases'} },
+        { status: 'total', color: 'var(--main-confirmate)', label: () => { return language === 'ro' ? 'Confirmate' : 'Confirmed'} },
         { status: 'healed', color: 'var(--main-recuperari)', label: () => { return language === 'ro' ? 'Recuperări' : 'Recovered' }},
         { status: 'dead', color: 'var(--main-decese)', label: () => { return language === 'ro' ? 'Decese' : 'Deceased' }}
     ]
@@ -10,7 +10,7 @@ const statuses = (language) => {
 
 export const drawLegend = (parentElement) => {
     let legend = d3.select(parentElement).append('g')
-        .attr('transform', 'translate(240,10)');
+        .attr('transform', 'translate(220,10)');
 
     let language = d3.select('#language').node().value;
 

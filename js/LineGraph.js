@@ -31,22 +31,38 @@ export default class LineGraph {
 
         // Set the ranges
         viz.linePathTotal = viz.g.append('g')
-            .attr('class', 'line_total');
+            .attr('class', 'total');
+        viz.linePathTotalDay = viz.g.append('g')
+            .attr('class', 'total_per_day');
         viz.linePathHealed = viz.g.append('g')
-            .attr('class', 'line_healed');
+            .attr('class', 'healed');
+        viz.linePathHealedDay = viz.g.append('g')
+            .attr('class', 'healed_per_day');
         viz.linePathDead = viz.g.append('g')
-            .attr('class', 'line_dead');
+            .attr('class', 'dead');
+        viz.linePathDeadDay = viz.g.append('g')
+            .attr('class', 'dead_per_day');
         viz.linePathActive = viz.g.append('g')
-            .attr('class', 'line_active');
+            .attr('class', 'active');
+        viz.linePathActiveDay = viz.g.append('g')
+            .attr('class', 'active_per_day');
 
         viz.nodesTotal = viz.g.append('g')
             .attr('class', 'node-total');
+        viz.nodesTotalDay = viz.g.append('g')
+            .attr('class', 'node-total-per-day');
         viz.nodesHealed = viz.g.append('g')
             .attr('class', 'node-healed');
+        viz.nodesHealedDay = viz.g.append('g')
+            .attr('class', 'node-healed-per-day');
         viz.nodesDead = viz.g.append('g')
             .attr('class', 'node-dead');
+        viz.nodesDeadDay = viz.g.append('g')
+            .attr('class', 'node-dead-per-day');
         viz.nodesActive = viz.g.append('g')
             .attr('class', 'node-active');
+        viz.nodesActiveDay = viz.g.append('g')
+            .attr('class', 'node-active-per-day');
 
         // Labels
         viz.yLabel = viz.g.append('text')
@@ -131,94 +147,15 @@ export default class LineGraph {
             viz.yAxis.selectAll('text').attr('font-weight', 'bold');
 
             // Define the lines
-            if (viz.field === 'total_case' || viz.field === 'all') {
-                viz.valueline_total = d3.line()
-                    .x(d => viz.xScale(d.date))
-                    .y(d => viz.yScale(d.total_case));
+            // Scatterplot
 
-                viz.linePathTotal = d3.select('.line_total').selectAll("lines")
-                    .data(viz.dataFiltered)
-                    .enter()
-                    .append("path")
-                        .attr('class', 'line_total')
-                        .attr("d", function(d) { return viz.valueline_total(viz.dataFiltered); });
-
-                // Scatterplot
-                viz.circles1_update = d3.select('.node-total')
-                    .selectAll('circle')
-                    .data(viz.dataFiltered);
-                viz.circles1_update.exit()
-                    .attr('class', 'exit')
-                    .remove();
-                viz.circles1_enter = viz.circles1_update.enter()
-                    .append('circle')
-                        .attr('class', 'dot_total')
-                    .merge(viz.circles1_update)
-                            .attr('r', viz.r)
-                            .attr('cx', d => viz.xScale(d.date))
-                            .attr('cy', d => viz.yScale(d.total_case));
-            };
-
-            if (viz.field === 'total_healed' || viz.field === 'all') {
-                viz.valueline_healed = d3.line()
-                    .x(d => d.total_healed !== 0 ? viz.xScale(d.date) : null)
-                    .y(d => viz.yScale(d.total_healed));
-
-                viz.linePathHealed = d3.select('.line_healed').selectAll("lines")
-                    .data(viz.dataFiltered)
-                    .enter()
-                    .append("path")
-                        .attr('class', 'line_healed')
-                        .attr("d", function(d) { return viz.valueline_healed(viz.dataFiltered); });
-
-                viz.circles2_update = d3.select('.node-healed')
-                    .selectAll('circle')
-                    .data(viz.dataFiltered);
-                viz.circles2_update.exit()
-                    .attr('class', 'exit')
-                    .remove();
-                viz.circles2_enter = viz.circles2_update.enter()
-                    .append('circle')
-                        .attr('class', 'dot_healed')
-                    .merge(viz.circles2_update)
-                            .attr('r', viz.r)
-                            .attr('cx', d => d.total_healed !== 0 ? viz.xScale(d.date) : null)
-                            .attr('cy', d => viz.yScale(d.total_healed));
-            };
-
-            if (viz.field === 'total_dead' || viz.field === 'all') {
-                viz.valueline_dead = d3.line()
-                    .x(d => d.total_dead !== 0 ? viz.xScale(d.date) : null)
-                    .y(d => viz.yScale(d.total_dead));
-
-                viz.linePathDead = d3.select('.line_dead').selectAll("lines")
-                    .data(viz.dataFiltered)
-                    .enter()
-                    .append("path")
-                        .attr('class', 'line_dead')
-                        .attr("d", function(d) { return viz.valueline_dead(viz.dataFiltered); });
-
-                viz.circles3_update = d3.select('.node-dead')
-                    .selectAll('circle')
-                    .data(viz.dataFiltered);
-                viz.circles3_update.exit()
-                    .attr('class', 'exit')
-                    .remove();
-                viz.circles3_enter = viz.circles3_update.enter()
-                    .append('circle')
-                        .attr('class', 'dot_dead')
-                    .merge(viz.circles3_update)
-                            .attr('r', viz.r)
-                            .attr('cx', d => d.total_dead !== 0 ? viz.xScale(d.date) : null)
-                            .attr('cy', d => viz.yScale(d.total_dead));
-            };
-
+            // Total active cases
             if (viz.field === 'total_active' || viz.field === 'all') {
                 viz.valueline_active = d3.line()
                     .x(d => d.total_active !== 0 ? viz.xScale(d.date) : null)
                     .y(d => viz.yScale(d.total_active));
 
-                viz.linePathActive = d3.select('.line_active').selectAll("lines")
+                viz.linePathActive = d3.select('.active').selectAll("path")
                     .data(viz.dataFiltered)
                     .enter()
                     .append("path")
@@ -239,6 +176,172 @@ export default class LineGraph {
                             .attr('r', viz.r)
                             .attr('cx', d => d.total_active !== 0 ? viz.xScale(d.date) : null)
                             .attr('cy', d => viz.yScale(d.total_active));
+            };
+
+            // Total confirmed cases
+            if (viz.field === 'total_case' || viz.field === 'all') {
+                viz.valueline_total = d3.line()
+                    .x(d => viz.xScale(d.date))
+                    .y(d => viz.yScale(d.total_case));
+
+                viz.linePathTotal = d3.select('.total').selectAll("path")
+                    .data(viz.dataFiltered)
+                    .enter()
+                    .append("path")
+                        .attr('class', 'line_total')
+                        .attr("d", function(d) { return viz.valueline_total(viz.dataFiltered); });
+
+                viz.circles1_update = d3.select('.node-total')
+                    .selectAll('circle')
+                    .data(viz.dataFiltered);
+                viz.circles1_update.exit()
+                    .attr('class', 'exit')
+                    .remove();
+                viz.circles1_enter = viz.circles1_update.enter()
+                    .append('circle')
+                        .attr('class', 'dot_total')
+                    .merge(viz.circles1_update)
+                            .attr('r', viz.r)
+                            .attr('cx', d => viz.xScale(d.date))
+                            .attr('cy', d => viz.yScale(d.total_case));
+            };
+            // New confirmed cases
+            if (viz.field === 'new_case_no') {
+                viz.valueline_total = d3.line()
+                    .x(d => viz.xScale(d.date))
+                    .y(d => viz.yScale(d.new_case_no));
+
+                viz.linePathTotal = d3.select('.total_per_day').selectAll("lines")
+                    .data(viz.dataFiltered)
+                    .enter()
+                    .append("path")
+                        .attr('class', 'line_total_per_day')
+                        .attr("d", function(d) { return viz.valueline_total(viz.dataFiltered); });
+
+                // Scatterplot
+                viz.circles1_update = d3.select('.node-total-per-day')
+                    .selectAll('circle')
+                    .data(viz.dataFiltered);
+                viz.circles1_update.exit()
+                    .attr('class', 'exit')
+                    .remove();
+                viz.circles1_enter = viz.circles1_update.enter()
+                    .append('circle')
+                        .attr('class', 'dot_total')
+                    .merge(viz.circles1_update)
+                            .attr('r', viz.r)
+                            .attr('cx', d => viz.xScale(d.date))
+                            .attr('cy', d => viz.yScale(d.new_case_no));
+            };
+
+            // Total healed cases
+            if (viz.field === 'total_healed' || viz.field === 'all') {
+                viz.valueline_healed = d3.line()
+                    .x(d => d.total_healed !== 0 ? viz.xScale(d.date) : null)
+                    .y(d => viz.yScale(d.total_healed));
+
+                viz.linePathHealed = d3.select('.healed').selectAll("lines")
+                    .data(viz.dataFiltered)
+                    .enter()
+                    .append("path")
+                        .attr('class', 'line_healed')
+                        .attr("d", function(d) { return viz.valueline_healed(viz.dataFiltered); });
+
+                viz.circles2_update = d3.select('.node-healed')
+                    .selectAll('circle')
+                    .data(viz.dataFiltered);
+                viz.circles2_update.exit()
+                    .attr('class', 'exit')
+                    .remove();
+                viz.circles2_enter = viz.circles2_update.enter()
+                    .append('circle')
+                        .attr('class', 'dot_healed')
+                    .merge(viz.circles2_update)
+                            .attr('r', viz.r)
+                            .attr('cx', d => d.total_healed !== 0 ? viz.xScale(d.date) : null)
+                            .attr('cy', d => viz.yScale(d.total_healed));
+            };
+            // New healed cases
+            if (viz.field === 'new_healed_no') {
+                viz.valueline_healed = d3.line()
+                    .x(d => viz.xScale(d.date))
+                    .y(d => viz.yScale(d.new_healed_no));
+
+                viz.linePathHealed = d3.select('.healed_per_day').selectAll("lines")
+                    .data(viz.dataFiltered)
+                    .enter()
+                    .append("path")
+                        .attr('class', 'line_healed_per_day')
+                        .attr("d", function(d) { return viz.valueline_healed(viz.dataFiltered); });
+
+                viz.circles2_update = d3.select('.node-healed-per-day')
+                    .selectAll('circle')
+                    .data(viz.dataFiltered);
+                viz.circles2_update.exit()
+                    .attr('class', 'exit')
+                    .remove();
+                viz.circles2_enter = viz.circles2_update.enter()
+                    .append('circle')
+                        .attr('class', 'dot_healed')
+                    .merge(viz.circles2_update)
+                            .attr('r', viz.r)
+                            .attr('cx', d => viz.xScale(d.date))
+                            .attr('cy', d => viz.yScale(d.new_healed_no));
+            };
+
+            // Total dead cases
+            if (viz.field === 'total_dead' || viz.field === 'all') {
+                viz.valueline_dead = d3.line()
+                    .x(d => d.total_dead !== 0 ? viz.xScale(d.date) : null)
+                    .y(d => viz.yScale(d.total_dead));
+
+                viz.linePathDead = d3.select('.dead').selectAll("lines")
+                    .data(viz.dataFiltered)
+                    .enter()
+                    .append("path")
+                        .attr('class', 'line_dead')
+                        .attr("d", function(d) { return viz.valueline_dead(viz.dataFiltered); });
+
+                viz.circles3_update = d3.select('.node-dead')
+                    .selectAll('circle')
+                    .data(viz.dataFiltered);
+                viz.circles3_update.exit()
+                    .attr('class', 'exit')
+                    .remove();
+                viz.circles3_enter = viz.circles3_update.enter()
+                    .append('circle')
+                        .attr('class', 'dot_dead')
+                    .merge(viz.circles3_update)
+                            .attr('r', viz.r)
+                            .attr('cx', d => d.total_dead !== 0 ? viz.xScale(d.date) : null)
+                            .attr('cy', d => viz.yScale(d.total_dead));
+            };
+            // New dead cases
+            if (viz.field === 'new_dead_no') {
+                viz.valueline_dead = d3.line()
+                    .x(d => viz.xScale(d.date))
+                    .y(d => viz.yScale(d.new_dead_no));
+
+                viz.linePathDead = d3.select('.dead_per_day').selectAll("lines")
+                    .data(viz.dataFiltered)
+                    .enter()
+                    .append("path")
+                        .attr('class', 'line_dead_per_day')
+                        .attr("d", function(d) { return viz.valueline_dead(viz.dataFiltered); });
+
+                viz.circles3_update = d3.select('.node-dead-per-day')
+                    .selectAll('circle')
+                    .data(viz.dataFiltered);
+                viz.circles3_update.exit()
+                    .attr('class', 'exit')
+                    .remove();
+                viz.circles3_enter = viz.circles3_update.enter()
+                    .append('circle')
+                        .attr('class', 'dot_dead')
+                    .merge(viz.circles3_update)
+                            .attr('r', viz.r)
+                            .attr('cx', d => viz.xScale(d.date))
+                            .attr('cy', d => viz.yScale(d.new_dead_no));
             };
 
             // Set focus and tooltip on nodes on mousemove
