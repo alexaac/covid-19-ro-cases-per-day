@@ -30,7 +30,7 @@ export const multiFormat = (date) => {
 
 // Tooltip Code
 export const setFocus = (parentElement, xScale, yScale, width, height, dataFiltered, field) => {
-    field = field || 'total_case';
+    field = field === 'all' ? 'total_case' : field;
 
     let focus = parentElement.append('g')
         .attr('class', 'focus')
