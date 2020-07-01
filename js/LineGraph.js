@@ -155,12 +155,9 @@ export default class LineGraph {
                     .x(d => d.total_active !== 0 ? viz.xScale(d.date) : null)
                     .y(d => viz.yScale(d.total_active));
 
-                viz.linePathActive = d3.select('.active').selectAll("path")
-                    .data(viz.dataFiltered)
-                    .enter()
-                    .append("path")
+                viz.linePathActive = d3.select('.active').append("path")
                         .attr('class', 'line_active')
-                        .attr("d", function(d) { return viz.valueline_active(viz.dataFiltered); });
+                        .attr("d", viz.valueline_active(viz.dataFiltered));
 
                 viz.circles4_update = d3.select('.node-active')
                     .selectAll('circle')
@@ -184,12 +181,9 @@ export default class LineGraph {
                     .x(d => viz.xScale(d.date))
                     .y(d => viz.yScale(d.total_case));
 
-                viz.linePathTotal = d3.select('.total').selectAll("path")
-                    .data(viz.dataFiltered)
-                    .enter()
-                    .append("path")
+                viz.linePathTotal = d3.select('.total').append("path")
                         .attr('class', 'line_total')
-                        .attr("d", function(d) { return viz.valueline_total(viz.dataFiltered); });
+                        .attr("d", viz.valueline_total(viz.dataFiltered));
 
                 viz.circles1_update = d3.select('.node-total')
                     .selectAll('circle')
@@ -211,12 +205,9 @@ export default class LineGraph {
                     .x(d => viz.xScale(d.date))
                     .y(d => viz.yScale(d.new_case_no));
 
-                viz.linePathTotal = d3.select('.total_per_day').selectAll("lines")
-                    .data(viz.dataFiltered)
-                    .enter()
-                    .append("path")
+                viz.linePathTotal = d3.select('.total_per_day').append("path")
                         .attr('class', 'line_total_per_day')
-                        .attr("d", function(d) { return viz.valueline_total(viz.dataFiltered); });
+                        .attr("d", viz.valueline_total(viz.dataFiltered));
 
                 // Scatterplot
                 viz.circles1_update = d3.select('.node-total-per-day')
@@ -240,12 +231,9 @@ export default class LineGraph {
                     .x(d => d.total_healed !== 0 ? viz.xScale(d.date) : null)
                     .y(d => viz.yScale(d.total_healed));
 
-                viz.linePathHealed = d3.select('.healed').selectAll("lines")
-                    .data(viz.dataFiltered)
-                    .enter()
-                    .append("path")
+                viz.linePathHealed = d3.select('.healed').append("path")
                         .attr('class', 'line_healed')
-                        .attr("d", function(d) { return viz.valueline_healed(viz.dataFiltered); });
+                        .attr("d", viz.valueline_healed(viz.dataFiltered));
 
                 viz.circles2_update = d3.select('.node-healed')
                     .selectAll('circle')
@@ -267,12 +255,9 @@ export default class LineGraph {
                     .x(d => viz.xScale(d.date))
                     .y(d => viz.yScale(d.new_healed_no));
 
-                viz.linePathHealed = d3.select('.healed_per_day').selectAll("lines")
-                    .data(viz.dataFiltered)
-                    .enter()
-                    .append("path")
+                viz.linePathHealed = d3.select('.healed_per_day').append("path")
                         .attr('class', 'line_healed_per_day')
-                        .attr("d", function(d) { return viz.valueline_healed(viz.dataFiltered); });
+                        .attr("d", viz.valueline_healed(viz.dataFiltered));
 
                 viz.circles2_update = d3.select('.node-healed-per-day')
                     .selectAll('circle')
@@ -295,12 +280,9 @@ export default class LineGraph {
                     .x(d => d.total_dead !== 0 ? viz.xScale(d.date) : null)
                     .y(d => viz.yScale(d.total_dead));
 
-                viz.linePathDead = d3.select('.dead').selectAll("lines")
-                    .data(viz.dataFiltered)
-                    .enter()
-                    .append("path")
+                viz.linePathDead = d3.select('.dead').append("path")
                         .attr('class', 'line_dead')
-                        .attr("d", function(d) { return viz.valueline_dead(viz.dataFiltered); });
+                        .attr("d", viz.valueline_dead(viz.dataFiltered));
 
                 viz.circles3_update = d3.select('.node-dead')
                     .selectAll('circle')
@@ -322,12 +304,9 @@ export default class LineGraph {
                     .x(d => viz.xScale(d.date))
                     .y(d => viz.yScale(d.new_dead_no));
 
-                viz.linePathDead = d3.select('.dead_per_day').selectAll("lines")
-                    .data(viz.dataFiltered)
-                    .enter()
-                    .append("path")
+                viz.linePathDead = d3.select('.dead_per_day').append("path")
                         .attr('class', 'line_dead_per_day')
-                        .attr("d", function(d) { return viz.valueline_dead(viz.dataFiltered); });
+                        .attr("d", viz.valueline_dead(viz.dataFiltered));
 
                 viz.circles3_update = d3.select('.node-dead-per-day')
                     .selectAll('circle')
