@@ -49,7 +49,7 @@ svg.chart-group {
 .line-chart-x path, .line-chart-y path {
     fill: none;
     stroke: grey;
-    stroke-width: 2;
+    stroke-width: 1;
 }
 
 path { 
