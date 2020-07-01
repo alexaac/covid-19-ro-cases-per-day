@@ -324,7 +324,7 @@ export default class LineGraph {
             };
 
             // Set focus and tooltip on nodes on mousemove
-            Helper.setFocus(viz.g, viz.xScale, viz.yScale, viz.width, viz.height, viz.dataFiltered);
+            Helper.setFocus(viz.g, viz.xScale, viz.yScale, viz.width, viz.height, viz.dataFiltered, viz.field);
         };
     };
 }

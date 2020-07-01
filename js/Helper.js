@@ -29,7 +29,7 @@ export const multiFormat = (date) => {
 };
 
 // Tooltip Code
-export const setFocus = (parentElement, xScale, yScale, width, height, dataFiltered) => {
+export const setFocus = (parentElement, xScale, yScale, width, height, dataFiltered, field) => {
     let focus = parentElement.append('g')
         .attr('class', 'focus')
         .style('display', 'none');
@@ -67,8 +67,8 @@ export const setFocus = (parentElement, xScale, yScale, width, height, dataFilte
             d0 = dataFiltered[i - 1],
             d1 = dataFiltered[i] || dataFiltered[dataFiltered.length - 1],
             d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-        focus.attr('transform', 'translate(' + xScale(d.date) + ',' + yScale(d.total_case) + ')');
-        focus.select('.x-hover-line').attr('y2', height - yScale(d.total_case));
+        focus.attr('transform', 'translate(' + xScale(d.date) + ',' + yScale(d[field]) + ')');
+        focus.select('.x-hover-line').attr('y2', height - yScale(d[field]));
         focus.select('.y-hover-line').attr('x2', - xScale(d.date));
         highlight(d);
     }
