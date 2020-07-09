@@ -139,7 +139,7 @@ tooltip_div.tooltip {
 
 .side-pannel-right {
     position: absolute;
-    right: 30px;
+    right: 10px;
     top: 0;
 }
 
@@ -214,6 +214,19 @@ tooltip_div.tooltip {
 .hide {
     position: absolute;
     left: -9999px;
+}
+
+/* Smaller devices */
+@media (max-width: 360px) {
+    .side-pannel-left {
+        top: 0;
+        left: 5px;
+    }
+
+    .side-pannel-right {
+        top: 0;
+        right: 0;
+    }
 }
 
 /* Small devices (tablets, 768px and up) */
